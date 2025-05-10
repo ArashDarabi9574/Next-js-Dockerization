@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  the-next-js-app:
+    build: .
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - the-next-js-app
